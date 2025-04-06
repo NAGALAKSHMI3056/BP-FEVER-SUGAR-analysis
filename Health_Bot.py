@@ -1,4 +1,4 @@
-def analyze_bp(systolic, diastolic):
+ def analyze_bp(systolic, diastolic):
     if systolic < 90 or diastolic < 60:
         return "Low Blood Pressure (Hypotension). Consider consulting a doctor if you feel dizzy."
     elif 90 <= systolic <= 120 and 60 <= diastolic <= 80:
@@ -41,20 +41,35 @@ def analyze_blood_sugar(level, fasting=True):
 
 def chatbot():
     print("Welcome to the Health Analysis Chatbot!")
-    
-    systolic = int(input("Enter your systolic BP (upper number): "))
-    diastolic = int(input("Enter your diastolic BP (lower number): "))
-    print(analyze_bp(systolic, diastolic))
-    
-    temp = float(input("Enter your body temperature (°F): "))
-    print(analyze_fever(temp))
-    
-    fasting = input("Is this a fasting blood sugar test? (yes/no): ").strip().lower() == 'yes'
-    blood_sugar = int(input("Enter your blood sugar level (mg/dL): "))
-    print(analyze_blood_sugar(blood_sugar, fasting))
-    
-    print("Thank you for using the chatbot! Stay healthy!")
 
+    while True:
+        print("\nChoose a health parameter to analyze:")
+        print("1. Blood Pressure")
+        print("2. Body Temperature")
+        print("3. Blood Sugar")
+        print("4. Exit")
+        choice = input("Enter your choice (1-4): ").strip()
+
+        if choice == '1':
+            systolic = int(input("Enter your systolic BP (upper number): "))
+            diastolic = int(input("Enter your diastolic BP (lower number): "))
+            print(analyze_bp(systolic, diastolic))
+
+        elif choice == '2':
+            temp = float(input("Enter your body temperature (°F): "))
+            print(analyze_fever(temp))
+
+        elif choice == '3':
+            fasting = input("Is this a fasting blood sugar test? (yes/no): ").strip().lower() == 'yes'
+            blood_sugar = int(input("Enter your blood sugar level (mg/dL): "))
+            print(analyze_blood_sugar(blood_sugar, fasting))
+
+        elif choice == '4':
+            print("Thank you for using the chatbot! Stay healthy!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
 
 if __name__ == "__main__":
     chatbot()
